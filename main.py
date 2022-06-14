@@ -6,15 +6,9 @@ second = data[1]
 
 result = 0
 
-while True:
-    for _ in range(k):
-        if m == 0:
-            break
-        result += first
-        m -= 1
-    if m == 0:
-        break
-    result += second
-    m -= 1
+firstCount = int(m / (k + 1)) * k + m % (k + 1)  # 큰 수가 더해지는 횟수
+secondCount = m - firstCount    # 작은 수가 더해지는 횟수
+
+result = first * firstCount + second * secondCount
 
 print(result)
