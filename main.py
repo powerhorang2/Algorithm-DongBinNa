@@ -1,14 +1,13 @@
-n, m = map(int, input().split())
+n, k = map(int, input().split())
 
-result = 0
-# 한 줄씩 입력받아 확인
-for i in range(n):
-    array = list(map(int, input().split()))
-    # 현재 줄에서 '가장 작은 수' 찾기
-    min_value = 10001
-    for a in array:
-        min_value = min(min_value, a)
-    # '가장 작은 수'들 중에서 가장 큰 수 찾기
-    result = max(result, min_value)
+count = 0
+while True:
+    if n == 1:
+        break
+    elif n % k == 0:
+        n //= k
+    else:
+        n -= 1
+    count += 1
 
-print(result)
+print(count)
