@@ -1,14 +1,12 @@
-n, m, k = map(int, input().split())
-data = list(map(int, input().split()))
-data.sort(reverse=True)
-first = data[0]
-second = data[1]
+n, m = map(int, input().split())
 
 result = 0
-
-firstCount = int(m / (k + 1)) * k + m % (k + 1)  # 큰 수가 더해지는 횟수
-secondCount = m - firstCount    # 작은 수가 더해지는 횟수
-
-result = first * firstCount + second * secondCount
+# 한 줄씩 입력받아 확인
+for i in range(n):
+    array = list(map(int, input().split()))
+    # 현재 줄에서 '가장 작은 수' 찾기
+    min_value = min(array)
+    # '가장 작은 수'들 중에서 가장 큰 수 찾기
+    result = max(result, min_value)
 
 print(result)
