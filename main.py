@@ -1,50 +1,15 @@
-n, m = map(int, input().split())
-a, b, direction = map(int, input().split())
+# 파이썬은 기본 리스트 자료형에서 append 와 pop 을 이용해서 간단하게 stack 자료구조를 사용할 수 있다.
+stack = []
 
-visited = [[0] * m for _ in range(n)]
-visited[a][b] = 1
+# 삽입(5) - 삽입(2) - 삽입(3) - 삽입(7) - 삭제() - 삽입(1) - 삽입(4) - 삭제()
+stack.append(5)
+stack.append(2)
+stack.append(3)
+stack.append(7)
+stack.pop()
+stack.append(1)
+stack.append(4)
+stack.pop()
 
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
-steps = [0, 1, 2, 3]
-
-array = []
-for _ in range(n):
-    array.append(list(map(int, input().split())))
-
-
-def turn_direction():
-    global direction
-    direction -= 1
-    if direction == -1:
-        direction = 3
-
-count = 1
-turn_time = 0
-
-while True:
-
-    turn_direction()
-    nx = a + dx[direction]
-    ny = b + dy[direction]
-
-    if array[ny][nx] == 0 and visited[nx][ny] == 0:
-        visited[a][b] = 1
-        a, b = nx, ny
-        count += 1
-        turn_time = 0
-        continue
-    else:
-        turn_time += 1
-
-    if turn_time == 4:
-        nx = a - dx[direction]
-        ny = b - dy[direction]
-        if array[nx][ny] == 1:
-            break
-        else:
-            a = nx
-            b = ny
-            turn_time = 0
-
-print(count)
+print(stack)    # 최하단 원소부터 출력
+print(stack[::-1])  # 최상단 원소부터 출력
