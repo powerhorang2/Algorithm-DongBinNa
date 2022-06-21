@@ -1,16 +1,17 @@
-# N을 입력받기
-n = int(input())
+n, k = map(int, input().split())    # N과 K를 입력받기
+array_a = list(map(int, input().split()))   # 배열 A의 모든 원소를 입력받기
+array_b = list(map(int, input().split()))   # 배열 B의 모든 원소를 입력받기
 
-# N명의 학생 정보를 입력받아 리스트에 저장
-array = []
-for _ in range(n):
-    input_data = input().split()
-    # 이름은 문자열 그대로, 점수는 정수형으로 변환하여 저장
-    array.append((input_data[0], int(input_data[1])))
+array_a = sorted(array_a)   # 배열 A는 오름차순 정렬 수행
+array_b = sorted(array_b, reverse=True) # 배열 B는 내림차순 정렬 수행
 
-# 키(Key)를 이용하여, 점수를 기준으로 정렬
-array = sorted(array, key=lambda data: data[1])
+# 첫 번째 인덱스부터 확인하며, 두 배열의 원소를 최대 K번 비교
+for i in range(k):
+    # A의 원소가 B의 원소보다 작은 경우
+    if array_a[i] < array_b[i]:
+        # 두 원소를 교체
+        array_a[i], array_b[i] = array_b[i], array_a[i]
+    else:   # A의 원소가 B의 원소보다 크거나 같을 때, 더 이상 교체 할 원소가 없으므로 반복문 탈출
+        break
 
-# 정렬이 수행된 결과를 출력
-for student in array:
-    print(student[0], end=" ")
+print(sum(array_a)) # 배열 A의 모든 원소의 합을 출력
