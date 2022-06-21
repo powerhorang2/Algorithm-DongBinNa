@@ -1,17 +1,19 @@
-n, k = map(int, input().split())    # N과 K를 입력받기
-array_a = list(map(int, input().split()))   # 배열 A의 모든 원소를 입력받기
-array_b = list(map(int, input().split()))   # 배열 B의 모든 원소를 입력받기
+# 순차 탐색 소스코드 구현
+def sequential_search(n, target, array):
+    # 각 원소를 하나씩 확인하며
+    for i in range(n):
+        # 현재의 원소가 찾고자 하는 원소와 동일한 경우
+        if array[i] == target:
+            return i + 1    # 현재 위치 반환(인덱스는 0부터 시작하므로 1 더하기)
 
-array_a = sorted(array_a)   # 배열 A는 오름차순 정렬 수행
-array_b = sorted(array_b, reverse=True) # 배열 B는 내림차순 정렬 수행
 
-# 첫 번째 인덱스부터 확인하며, 두 배열의 원소를 최대 K번 비교
-for i in range(k):
-    # A의 원소가 B의 원소보다 작은 경우
-    if array_a[i] < array_b[i]:
-        # 두 원소를 교체
-        array_a[i], array_b[i] = array_b[i], array_a[i]
-    else:   # A의 원소가 B의 원소보다 크거나 같을 때, 더 이상 교체 할 원소가 없으므로 반복문 탈출
-        break
+print("생성할 원소 개수를 입력한 다음 한 칸 띄고 찾을 문자열을 입력하세요.")
+input_data = input().split()
+n = int(input_data[0])  # 원소의 개수
+target = input_data[1]  # 찾고자 하는 문자열
 
-print(sum(array_a)) # 배열 A의 모든 원소의 합을 출력
+print("앞서 적은 원소 개수만큼 문자열을 입력하세요. 구분은 띄어쓰기 한 칸으로 합니다. ")
+array = input().split()
+
+# 순차 탐색 수행 결과 출력
+print(sequential_search(n, target, array))
