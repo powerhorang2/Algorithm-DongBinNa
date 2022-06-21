@@ -1,19 +1,11 @@
-array = [5, 7, 9, 0, 3, 1, 6, 2, 4, 8]
+# 모든 원소의 값이 0보다 크거나 같다고 가정
+array = [7, 5, 9, 0, 3, 1, 6, 2, 9, 1, 4, 8, 0, 5, 2]
+# 모든 범위를 포함하는 리스트 선언(모든 값은 0으로 초기화)
+sort_array = [0] * (max(array) + 1)
 
+for i in array:
+    sort_array[i] += 1  # 각 데이터에 해당하는 인덱스 값 증가
 
-def quick_sort(array):
-    # 리스트가 하나 이하의 원소만을 담고 있다면 종료
-    if len(array) <= 1:
-        return array
-    
-    pivot = array[0]    # 피벗은 첫 번째 원소
-    tail = array[1:]    # 피벗을 제외한 리스트
-
-    left_side = [x for x in tail if x <= pivot]  # 분할된 왼쪽 부분
-    right_side = [x for x in tail if x > pivot]  # 분할된 오른쪽 부분
-
-    # 분할 이후 왼쪽 부분과 오른쪽 부분에서 각각 정렬을 수행하고, 전체 리스트를 반환
-    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
-
-
-print(quick_sort(array))
+for i in range(len(sort_array)):    # 리스트에 기록된 정렬 정보 확인
+    for _ in range(sort_array[i]):
+        print(i, end=" ")   # 띄어쓰기를 구분으로 등장한 횟수만큼 인덱스 출력
