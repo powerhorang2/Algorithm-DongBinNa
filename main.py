@@ -1,6 +1,23 @@
-import sys
-# 하나의 문자열 데이터 입력받기
-input_data = sys.stdin.readline().rstrip()
+def binary_search(array, target, start, end):
+    if start > end:
+        return None
+    mid = (start + end) // 2
+    if array[mid] == target:
+        return target
+    elif array[mid] > target:
+        return binary_search(array, target, start, mid - 1)
+    elif array[mid] < target:
+        return binary_search(array, target, mid + 1, end)
 
-# 입력받은 문자열 그대로 출력
-print(input_data)
+
+n = int(input())
+shop = list(map(int, input().split()))
+shop.sort()
+m = int(input())
+customer = list(map(int, input().split()))
+
+for i in customer:
+    if binary_search(shop, i, 0, len(shop) - 1) is None:
+        print("no", end=" ")
+    else:
+        print("yes", end=" ")
