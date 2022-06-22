@@ -1,18 +1,18 @@
-# 이진 탐색 소스코드 구현(재귀 함수)
+# 이진 탐색 소스코드 구현(반복문)
 def binary_search(array, target, start, end):
-    # 시작 인덱스가 끝 인덱스보다 크다는건 찾아봐도 타겟이 없다는 것
-    if start > end:
-        return None
-    mid = (start + end) // 2
-    # 타겟을 찾은 경우 중간점 인덱스 반환
-    if array[mid] == target:
-        return mid
-    # 타겟이 중간점의 값보다 작은 경우 왼쪽 확인
-    elif array[mid] > target:
-        return binary_search(array, target, start, mid - 1)
-    # 타겟이 중간점의 값보다 큰 경우 오른쪽 확인
-    elif array[mid] < target:
-        return binary_search(array, target, mid + 1, end)
+    # 시작 인덱스가 끝 인덱스보다 작거나 같을 때 반복
+    while start <= end:
+        mid = (start + end) // 2
+        # 타겟을 찾은 경우 중간점 인덱스 반환
+        if array[mid] == target:
+            return mid
+        # 타겟이 중간점의 값보다 작은 경우 왼쪽 확인
+        elif array[mid] > target:
+            end = mid - 1
+        # 타겟이 중간점의 값보다 큰 경우 오른쪽 확인
+        elif array[mid] < target:
+            start = mid + 1
+    return None
 
 
 # N(가게의 부품 개수) 입력
@@ -28,7 +28,7 @@ customer = list(map(int, input().split()))
 # 손님이 확인 요청한 부품 번호를 하나씩 확인
 for i in customer:
     # 해당 부품이 존재하는지 확인
-    result = binary_search(shop, i, 0, len(shop) - 1)
+    result = binary_search(shop, i, 0, n - 1)
     if result is None:
         print("no", end=" ")
     else:
