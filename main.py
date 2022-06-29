@@ -1,14 +1,20 @@
-# 정수 N을 입력받기
-n = int(input())
+n, m = map(int, input().split())
+array = []
+for _ in range(n):
+    array.append(int(input()))
 
-# 앞서 계산된 결과를 지정하기 위한 DP 테이블 초기화
-d = [0] * 1001
+d = [-1] * 10001
+d[0] = 0
 
-# 다이나믹 프로그래밍(Dynamic Programming) 진행(보텀업)
-d[1] = 1
-d[2] = 3
-for i in range(3, n + 1):
-    d[i] = (d[i - 1] + 2 * d[i - 2]) % 769769  # 값을 계산할 때마다 나누는 이유는 모듈러 연산을 참고하면 된다.
+start = min(array)
+for money in array:
+    d[money] = 1
 
-# 계산된 결과를 출력
-print(d[n])
+for i in range(start, m + 1):
+    for money in array:
+        if d[i - money] > 0 and d[i] > 0:
+            d[i] = min(d[i], d[i - money] + 1)
+        elif d[i - money] > 0 and d[i] < 0:
+            d[i] = d[i - money] + 1
+
+print(d[m])
